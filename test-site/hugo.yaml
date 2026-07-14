@@ -1,0 +1,26 @@
+# SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+relativeURLs: false
+canonifyURLs: false
+locale: en-us
+title: "My Little Blog"
+theme: floral-cities
+
+pagination:
+  pagerSize: 5
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block:
+            - ['\[', '\]']
+            - ['$$', '$$']
+          inline:
+            - ['\(', '\)']

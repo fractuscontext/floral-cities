@@ -1,0 +1,67 @@
+{{- /*
+    SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+    SPDX-License-Identifier: MIT
+*/ -}}
+
+{{- $paginator := .Paginate .Pages.ByDate.Reverse }}
+
+<ul class="post-list">
+    {{- range $paginator.Pages }}
+        <li class="post-list-item">
+            <time class="post-list-time" datetime='{{ .Date | time.Format "2006-01-02T15:04:05-07:00" }}'>
+                {{ .Date | time.Format "2006-01-02" }}
+            </time>
+
+            <div class="post-list-info">
+                <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+                {{- /* Output the description under the title if it exists */ -}}
+                {{ with .Description }}
+                    <span class="post-list-desc">{{ . }}</span>
+                {{ end }}
+            </div>
+        </li>
+    {{- end }}
+</ul>
+
+{{- if gt $paginator.TotalPages 1 }}
+    <nav class="pagination">
+        {{- /* Previous Button */ -}}
+        {{- if $paginator.HasPrev }}
+            <a href="{{ $paginator.Prev.URL }}">« prev</a>
+        {{- else }}
+            <span class="pagination-disabled">« prev</span>
+        {{- end }}
+
+        {{- /* Smart Page Numbers with "..." gaps */ -}}
+        {{- $.Scratch.Set "dotsRendered" false }}
+        {{- range $paginator.Pagers }}
+            {{- /* Check if page is first, last, or within +/- 2 pages of the current page */ -}}
+            {{- $is_first := eq .PageNumber 1 }}
+            {{- $is_last := eq .PageNumber $paginator.TotalPages }}
+            {{- $is_nearby := and (ge .PageNumber (sub $paginator.PageNumber 2)) (le .PageNumber (add $paginator.PageNumber 2)) }}
+
+            {{- if or $is_first $is_last $is_nearby }}
+                {{- /* We are rendering a number, so reset the dots flag */ -}}
+                {{- $.Scratch.Set "dotsRendered" false }}
+                {{- if eq . $paginator }}
+                    [ <span class="pagination-current">{{ .PageNumber }}</span> ]
+                {{- else }}
+                    [ <a href="{{ .URL }}">{{ .PageNumber }}</a> ]
+                {{- end }}
+            {{- else }}
+                {{- /* Render ' ... ' only once per large gap */ -}}
+                {{- if not ($.Scratch.Get "dotsRendered") }}
+                    <span class="pagination-dots">...</span>
+                    {{- $.Scratch.Set "dotsRendered" true }}
+                {{- end }}
+            {{- end }}
+        {{- end }}
+
+        {{- /* Next Button */ -}}
+        {{- if $paginator.HasNext }}
+            <a href="{{ $paginator.Next.URL }}">next »</a>
+        {{- else }}
+            <span class="pagination-disabled">next »</span>
+        {{- end }}
+    </nav>
+{{- end }}

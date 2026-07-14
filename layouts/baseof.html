@@ -1,0 +1,23 @@
+{{- /*
+            SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+            SPDX-License-Identifier: MIT
+            */ -}}
+<!DOCTYPE html>
+<!-- djlint:off H016,H030 -->
+<html lang="{{ site.Language.Locale }}"
+      dir="{{ or site.Language.Direction `ltr` }}">
+    <head>{{ partial "head.html" . }}</head>
+    <body>
+        <header class="compact-header">
+            {{ partial "header.html" . }}
+        </header>
+        <div class="content-container">
+            <main>
+                {{ block "main" . }}{{ end }}
+            </main>
+            <footer>
+                {{ partial "footer.html" . }}
+            </footer>
+        </div>
+    </body>
+</html>

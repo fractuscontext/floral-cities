@@ -1,0 +1,19 @@
+{{- /*
+    SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+    SPDX-License-Identifier: MIT
+    */ -}}
+{{ define "main" }}
+
+    <div class="centered-block error-page-wrapper">
+        <div class="post-content error-box">
+            <h1>Error 404</h1>
+            {{- with resources.Get "images/chibiusa_404.jpg" }}
+                <img src="{{ .RelPermalink }}" alt="Aaaaa!">
+            {{- end }}
+            <p class="error-msg">Aaaaa! What are you doing here!</p>
+            <p>
+                <a href="{{ site.Home.RelPermalink }}">« Click here to teleport back to the Homepage »</a>
+            </p>
+        </div>
+    </div>
+{{ end }}

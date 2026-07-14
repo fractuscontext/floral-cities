@@ -1,0 +1,81 @@
+{{- /*
+                    SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+                    SPDX-License-Identifier: MIT
+                    */ -}}
+{{- /*
+                    Renders a menu for the given menu ID.
+
+                    @context {page} page The current page.
+                    @context {string} menuID The menu ID.
+
+                    @example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+                    */}}
+{{- $page := .page }}
+{{- $menuID := .menuID }}
+{{- with index site.Menus $menuID }}
+    <nav>
+        <ul>
+            {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+            {{- /* No-JS Dark Mode Toggle */ -}}
+            {{- if site.Params.enableNoJsDarkMode }}
+                <li class="theme-toggle-wrapper">
+                    <!-- Added class back here for targeting -->
+                    <input type="checkbox" id="dark-mode-toggle" autocomplete="off" />
+                    <label for="dark-mode-toggle"
+                           class="theme-toggle-label"
+                           title="Toggle Theme">
+                        <!-- Not Toggled: Blue Moon Outline -->
+                        <svg class="icon-not-toggled"
+                             xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 24 24"
+                             fill="none"
+                             stroke="currentColor"
+                             stroke-width="2"
+                             stroke-linecap="round"
+                             stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <!-- Toggled: Yellow Moon Zzz Fill -->
+                        <svg class="icon-toggled"
+                             xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 24 24">
+                            <!-- The filled crescent -->
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor" stroke="none"></path>
+                            <!-- The Z's floating in the empty space -->
+                            <path d="M15 3h3.5l-3.5 4.5h3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                            <path d="M19 10h2.5l-2.5 3h2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            </path>
+                        </svg>
+                    </label>
+                </li>
+            {{- end }}
+        </ul>
+    </nav>
+{{- end }}
+{{- define "_partials/inline/menu/walk.html" }}
+    {{- $page := .page }}
+    {{- range .menuEntries }}
+        {{- $attrs := dict "href" .URL }}
+        {{- if $page.IsMenuCurrent .Menu . }}
+            {{- $attrs = merge $attrs (dict "class" "active" "aria-current" "page") }}
+        {{- else if $page.HasMenuCurrent .Menu .}}
+            {{- $attrs = merge $attrs (dict "class" "ancestor" "aria-current" "true") }}
+        {{- end }}
+        {{- $name := .Name }}
+        {{- with .Identifier }}
+            {{- with T . }}
+                {{- $name = . }}
+            {{- end }}
+        {{- end }}
+        <li>
+            <a {{- range $k, $v :=$attrs }} {{- with $v }} {{- printf " %s=%q" $k $v | safeHTMLAttr }} {{- end }} {{- end -}}>{{
+            $name }}</a>
+            {{- with .Children }}
+                <ul>
+                    {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+                </ul>
+            {{- end }}
+        </li>
+    {{- end }}
+{{- end }}

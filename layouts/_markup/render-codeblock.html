@@ -1,0 +1,14 @@
+{{- /*
+            SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+            SPDX-License-Identifier: MIT
+            */ -}}
+<div class="code-wrapper">
+    <div class="code-header">
+        <span class="code-file">{{ .Attributes.title }}</span>
+        <span class="code-lang">{{ .Type }}</span>
+    </div>
+    <div class="code-content">
+        {{- $result := transform.HighlightCodeBlock . -}}
+        {{- $result.Wrapped -}}
+    </div>
+</div>

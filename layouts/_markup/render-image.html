@@ -1,0 +1,34 @@
+{{- /*  
+            SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>  
+            SPDX-License-Identifier: MIT  
+            */ -}}
+{{- $id := now.UnixNano | string | add "caption-" }}
+{{- /* 1. Check if the image source is a base64 SVG */ -}}
+{{- $isBase64SVG := strings.HasPrefix .Destination "data:image/svg+xml;base64," }}
+{{- $svgContent := "" }}
+{{- if $isBase64SVG }}
+    {{- /* Strip prefix and decode the raw SVG code */ -}}
+    {{- $svgContent = strings.TrimPrefix "data:image/svg+xml;base64," .Destination | base64Decode | safeHTML }}
+{{- end }}
+{{- with $caption := .Title | .Page.RenderString }}
+    <span class="img-with-caption">
+        {{- /* 2a. Captioned Base64 SVG */ -}}
+        {{- if $isBase64SVG }}
+            <span aria-labelledby="{{ $id }}" class="inline-svg-wrapper">{{ $svgContent }}</span>
+            {{- /* 2b. Captioned Normal Image */ -}}
+        {{- else }}
+            <img src="{{ $.Destination }}"
+                 alt="{{ $.PlainText }}"
+                 aria-labelledby="{{ $id }}">
+        {{- end }}
+        <span class="img-caption" id="{{ $id }}">{{ $caption }}</span>
+    </span>
+{{- else }}
+    {{- /* 3a. Uncaptioned Base64 SVG */ -}}
+    {{- if $isBase64SVG }}
+        <span class="inline-svg-wrapper" aria-label="{{ .PlainText }}">{{ $svgContent }}</span>
+        {{- /* 3b. Uncaptioned Normal Image */ -}}
+    {{- else }}
+        <img src="{{ .Destination }}" alt="{{ .PlainText }}">
+    {{- end }}
+{{- end }}

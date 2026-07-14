@@ -1,0 +1,44 @@
+# SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+locale: en-US
+title: Floral Cities
+
+module:
+  hugoVersion:
+    extended: false
+    min: "0.146.0"
+
+menus:
+  main:
+    - name: Home
+      pageRef: /
+      weight: 10
+    - name: Posts
+      pageRef: /posts
+      weight: 20
+
+params:
+  retro_footer:
+    separator_image: images/cat_separator.gif
+    lines:
+      - "Best viewed in any non-Netscape browser at any resolution"
+      - ""
+      - "This work is marked CC0 1.0 Universal"
+      - ""
+      - "To use this theme, visit:"
+      - "https://github.com/fractuscontext/floral-cities.git"
+    badges:
+      - image: "https://jigsaw.w3.org/css-validator/images/vcss"
+        alt: "Valid CSS!"
+        url: "https://jigsaw.w3.org/css-validator/check/referer"
+      - image: images/made_with_imac.gif
+        alt: "Best viewed on iMac"
+      - image: images/pride_flag.gif
+        alt: "RAINBOW FLAG"
+        url: "https://www.amnesty.org/en/what-we-do/discrimination/lgbti-rights/"
+
+  header_image:
+    path: images/spinning_globe.gif
+    alt: "Spinning Earth"

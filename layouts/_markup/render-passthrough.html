@@ -1,0 +1,29 @@
+{{- /*
+    SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+    SPDX-License-Identifier: MIT
+    */ -}}
+{{- $isBlock := eq .Type "block" }}
+{{- $opts := dict "output" "htmlAndMathml" "displayMode" $isBlock }}
+{{- with try (transform.ToMath .Inner $opts) }}
+    {{- with .Err }}
+        {{- errorf "Unable to render math. KaTeX error: %s: see %s." . $.Position }}
+    {{- else }}
+        {{- /* Only wrap in a div if it is a block equation */ -}}
+        {{- if $isBlock -}}
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">latex (rendered)</span>
+                </div>
+                <div class="code-content math-scroll-wrapper">
+                    {{- .Value -}}
+                </div>
+            </div>
+        {{- else -}}
+            {{- /* Leave inline math alone so it flows with the text */ -}}
+            {{- .Value -}}
+        {{- end -}}
+
+        {{- /* Sets a flag so Hugo knows this specific page has math on it */ -}}
+        {{- $.Page.Store.Set "hasMath" true -}}
+    {{- end }}
+{{- end -}}
