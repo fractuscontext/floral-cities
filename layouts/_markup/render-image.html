@@ -1,0 +1,13 @@
+{{- /*
+SPDX-FileCopyrightText: 2026 Claire Tam <clare.tt@posteo.de>
+SPDX-License-Identifier: MIT
+*/ -}}
+{{- $id := now.UnixNano | string | add "caption-" }}
+{{- with $caption := .Title | .Page.RenderString }}
+  <span class="img-with-caption">
+    <img src="{{ $.Destination }}" alt="{{ $.PlainText }}" aria-labelledby="{{ $id }}">
+    <span class="img-caption" id="{{ $id }}">{{ $caption }}</span>
+  </span>
+{{- else }}
+  <img src="{{ .Destination }}" alt="{{ .PlainText }}">
+{{- end }}

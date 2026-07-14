@@ -1,0 +1,25 @@
+{{- /*
+SPDX-FileCopyrightText: 2026 Claire Tam <clare.tt@posteo.de>
+SPDX-License-Identifier: MIT
+*/ -}}
+{{- $currentPage := . -}}
+<div class="tag-list">
+  <div>Filter posts by tags:</div>
+  <ul>
+    {{- /* 'all' link */ -}}
+    {{- if eq $currentPage.RelPermalink "/posts/" }}
+      <li class="active">all</li>
+    {{- else }}
+      <li><a href="/posts/">all</a></li>
+    {{- end }}
+
+    {{- /* Individual tags */ -}}
+    {{- range site.Taxonomies.tags.Alphabetical }}
+      {{- if eq $currentPage.RelPermalink .Page.RelPermalink }}
+        <li class="active">{{ .Page.Title | lower }}</li>
+      {{- else }}
+        <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title | lower }}</a></li>
+      {{- end }}
+    {{- end }}
+  </ul>
+</div>

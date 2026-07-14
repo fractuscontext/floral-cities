@@ -1,0 +1,25 @@
+{{- /*
+SPDX-FileCopyrightText: 2026 Claire Tam <clare.tt@posteo.de>
+SPDX-License-Identifier: MIT
+*/ -}}
+{{ define "main" }}
+<div class="centered-block" style="margin-top: 50px;">
+    
+    <div class="post-content" style="border-color: #cc0000; background-color: #fff5f5; max-width: 500px; text-align: center;">
+        
+        <h1 style="color: #cc0000; font-family: 'Times New Roman', serif; margin-top: 0;">Error 404</h1>
+        {{- with resources.Get "images/chibiusa_404.jpg" }}
+        <img src="{{ .RelPermalink }}" alt="Aaaaa!" style="border: none; margin-bottom: 5px;">
+        {{- end }}
+
+        <p style="text-align: center;">
+            Aaaaa! What are you doing here! 
+        </p>
+        <p>
+            <a href="{{ site.Home.RelPermalink }}">« Click here to teleport back to the Homepage »</a>
+        </p>
+
+    </div>
+
+</div>
+{{ end }}

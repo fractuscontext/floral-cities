@@ -1,0 +1,18 @@
+{{- /*
+SPDX-FileCopyrightText: 2026 Claire Tam <clare.tt@posteo.de>
+SPDX-License-Identifier: MIT
+*/ -}}
+{{ define "main" }}
+
+{{ .Content }}
+
+{{ partial "post-list.html" . }}
+
+{{ if eq .Type "tags" }}
+  {{ partial "tags-bar.html" . }}
+{{ else }}
+  {{- /* Fallback heading for other taxonomies like categories */ -}}
+  <h1>{{ .Title }}</h1>
+{{ end }}
+
+{{ end }}

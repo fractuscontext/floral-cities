@@ -1,0 +1,14 @@
+{{- /*
+SPDX-FileCopyrightText: 2026 Claire Tam <clare.tt@posteo.de>
+SPDX-License-Identifier: MIT
+*/ -}}
+{{- $opts := dict "output" "htmlAndMathml" "displayMode" (eq .Type "block") }}
+{{- with try (transform.ToMath .Inner $opts) }}
+  {{- with .Err }}
+    {{- errorf "Unable to render math. KaTeX error: %s: see %s." . $.Position }}
+  {{- else }}
+    {{- .Value }}
+    <!-- Sets a flag so Hugo knows this specific page has math on it -->
+    {{- $.Page.Store.Set "hasMath" true }}
+  {{- end }}
+{{- end -}}

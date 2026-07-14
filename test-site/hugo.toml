@@ -1,0 +1,20 @@
+relativeURLs = false
+canonifyURLs = false
+locale = 'en-us'
+title = "My Little Blog"
+theme = 'floral-cities'
+
+[pagination]
+  pagerSize = 5
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+  [markup.goldmark.extensions]
+    [markup.goldmark.extensions.passthrough]
+      enable = true
+      [markup.goldmark.extensions.passthrough.delimiters]
+        block = [['\[', '\]'], ['$$', '$$']]
+        inline = [['\(', '\)']]

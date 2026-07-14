@@ -1,0 +1,20 @@
+version = 1
+
+[[annotations]]
+path = [
+    "static/favicon.ico",
+    "assets/images/*",
+    "test-site/content/posts/*",
+    ".gitignore",
+    "flake.lock",
+    "flake.nix",
+    ".gitignore",
+    "test-site/content/**/*",
+    "archetypes/default.md",
+    "content/**/*.md",
+    "**/hugo.toml",
+    ".github/workflows/**/*",
+    "images/*"
+]
+SPDX-FileCopyrightText = "NONE"
+SPDX-License-Identifier = "CC0-1.0"

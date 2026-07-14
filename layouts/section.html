@@ -1,0 +1,13 @@
+{{- /*
+SPDX-FileCopyrightText: 2026 Claire Tam <clare.tt@posteo.de>
+SPDX-License-Identifier: MIT
+*/ -}}
+{{ define "main" }}
+{{ .Content }}
+{{ partial "post-list.html" . }}
+
+{{ if eq .Section "posts" }}
+  <hr style="margin-top: 3em;">
+  {{ partial "tags-bar.html" . }}
+{{ end }}
+{{ end }}

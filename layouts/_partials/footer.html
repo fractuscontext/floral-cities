@@ -1,0 +1,64 @@
+{{- /*
+SPDX-FileCopyrightText: 2026 Claire Tam <clare.tt@posteo.de>
+SPDX-License-Identifier: MIT
+*/ -}}
+{{- with site.Params.retro_footer.separator_image }}
+  <div aria-hidden="true" style="text-align: center; margin: 20px 0;">  
+      {{- /* Fingerprinting the separator image */ -}}
+      {{- with (resources.Get . | fingerprint) }}  
+      <img src="{{ .RelPermalink }}" alt="----------------" style="max-width: 100%; height: auto;">  
+      {{- end }}  
+  </div>  
+{{- else }}
+  <hr>
+{{- end }}
+
+<!-- Added monospace styling to the 'top' link -->
+<p style="font-family: 'Courier New', Courier, monospace;"><a href="#">top</a></p>
+
+<!-- Added monospace styling to the footer lines block -->
+<p style="font-family: 'Courier New', Courier, monospace;">
+  {{- with site.Params.retro_footer.lines }}
+    {{- range $index, $line := . }}
+      {{- if gt $index 0 }}<br>{{ end }}
+      {{- $line | safeHTML }}
+    {{- end }}
+  {{- else }}
+    Thanks for visiting!<br>
+    Copyright &copy; {{ now.Year }} {{ site.Title }}. All rights reserved.
+  {{- end }}
+</p>
+
+<div style="display: flex; gap: 5px; justify-content: center; margin: 20px 0; flex-wrap: wrap;">
+  
+  {{- range site.Params.retro_footer.badges }}
+    {{- $imgUrl := "" }}
+    {{- $hasImage := false }}
+
+    {{- if hasPrefix .image "http" }}
+      {{- /* Skip fingerprinting for external URLs */ -}}
+      {{- $imgUrl = .image }}
+      {{- $hasImage = true }}
+    {{- else }}
+      {{- /* Fingerprinting local badges */ -}}
+      {{- with (resources.Get .image | fingerprint) }}
+        {{- $imgUrl = .RelPermalink }}
+        {{- $hasImage = true }}
+      {{- end }}
+    {{- end }}
+
+    {{- if $hasImage }}
+      
+      {{- if .url }}
+        <a href="{{ .url }}" {{ if hasPrefix .url "http" }}target="_blank" rel="noopener"{{ end }}>
+          <img style="border:0; max-height:31px; width:auto;" src="{{ $imgUrl }}" alt="{{ .alt | default "Badge" }}" />
+        </a>
+      
+      {{- else }}
+        <img style="border:0; max-height:31px; width:auto;" src="{{ $imgUrl }}" alt="{{ .alt | default "Badge" }}" />
+      {{- end }}
+      
+    {{- end }}
+  {{- end }}
+    
+</div>

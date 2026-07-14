@@ -1,0 +1,209 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <clare.tt@posteo.de>
+
+SPDX-License-Identifier: MIT
+**/
+
+body {
+    background-color: #ffffff;
+    background-image: url('{{ (resources.Get "images/eyelet.png" | fingerprint).Permalink }}');
+    background-size: min(87px, 10vw) auto;
+    background-repeat: repeat-y;
+    background-position: left top;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: #333333;
+}
+
+a:link,
+a:visited,
+a:active {
+    color: #cc6699;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+}
+
+a:hover {
+    color: #a54b77;
+    text-decoration-style: solid;
+    cursor: pointer;
+}
+
+:root {
+    --layout-margin-left: 10%;
+    --layout-padding: 20px 5%;
+    --layout-max-width: 50rem;
+    font-size: clamp(14px, 15px, 20px);
+}
+
+@media (aspect-ratio: 3/2) {
+    :root {
+        --layout-margin-left: 20%;
+    }
+}
+
+.content-container,
+.compact-header {
+    margin-left: var(--layout-margin-left);
+    padding: var(--layout-padding);
+    max-width: var(--layout-max-width);
+}
+
+/* 3. Add the specific rules that only apply to the header */
+.compact-header {
+    text-align: right;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.centered-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+h1,
+h2 {
+    color: #cc6699;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+h2 {
+    font-size: 1.3rem;
+    margin-top: 15px;
+}
+
+hr {
+    border: none;
+    border-top: 3px dotted #cc6699;
+    margin: 20px auto;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+footer {
+    margin-top: 40px;
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.compact-header h1 {
+    margin: 0 0 10px 0;
+    padding: 0;
+    font-family: "Comic Sans MS";
+    color: #cc6699;
+    text-decoration: none;
+}
+
+.compact-header nav ul {
+    list-style: none;
+    font-family: "Comic Sans MS";
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.compact-header nav ul li a {
+    font-size: 1.05rem;
+}
+
+.post-meta {
+    font-size: 0.85rem;
+    color: #777777;
+    margin-top: -5px;
+    margin-bottom: 20px;
+}
+
+/* Creates distinct blocks for your list of posts */
+main section {
+    padding-bottom: 25px;
+    border-top: 2px dotted #e6a8c7;
+}
+
+
+.tag-list {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.tag-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tag-list ul li::before {
+    content: "[ ";
+    color: #7b8fa3;
+    text-decoration: none;
+}
+
+.tag-list ul li::after {
+    content: " ]";
+    color: #7b8fa3;
+    text-decoration: none;
+}
+
+/* Greyed out state for the active tag or "all" */
+.tag-list ul li.active a,
+.tag-list ul li.active {
+    color: gray;
+    pointer-events: none;
+    text-decoration: none;
+}
+
+
+.img-with-caption {
+    display: block;
+    text-align: center;
+    /* Centers its contents (img and span) */
+    max-width: 800px;
+    /* Optional: prevents it from becoming too large on desktops */
+    margin: 20px auto;
+    /* Optional: adds vertical space and centers the whole block on the page */
+}
+
+/* Make the image responsive and ensure it stacks vertically */
+.img-with-caption img {
+    display: block;
+    /* Required to remove unwanted vertical whitespace below images */
+    max-width: 100%;
+    /* Key for responsiveness: image won't grow past its container */
+    height: auto;
+    /* Maintains aspect ratio when scaling */
+    margin: 0 auto;
+    /* Ensures the img element itself is centered */
+}
+
+/* Style the caption */
+.img-caption {
+    display: block;
+    /* Forces the caption below the image */
+    margin-top: 10px;
+    /* Adds space between the image and text */
+    color: #555;
+    /* Optional: softens the caption color */
+    font-size: 0.9rem;
+    /* Optional: makes the caption slightly smaller */
+    font-style: italic;
+    /* Optional: standard caption styling */
+}

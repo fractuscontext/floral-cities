@@ -1,0 +1,19 @@
+{{- /*
+SPDX-FileCopyrightText: 2026 Claire Tam <clare.tt@posteo.de>
+SPDX-License-Identifier: MIT
+*/ -}}
+{{ define "main" }}
+<h2>{{ .Title }}</h2>
+
+
+{{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+{{ $dateHuman := .Date | time.Format ":date_long" }}
+
+<p class="post-meta">Created on: <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>・Updated on: <time datetime="{{ .Lastmod.UTC.Format "2006-01-02" }}">{{ .Lastmod.UTC.Format "January 2, 2006" }}</time></p>
+<section class="post-content">
+  {{ .Content }}
+</section>
+
+{{ partial "terms.html" (dict "taxonomy" "tags" "page" .) -}}
+
+{{ end }}

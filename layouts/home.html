@@ -1,0 +1,23 @@
+{{- /*
+SPDX-FileCopyrightText: 2026 Claire Tam <clare.tt@posteo.de>
+SPDX-License-Identifier: MIT
+*/ -}}
+{{ define "main" }}
+<div class="centered-block" style="margin-bottom: 30px;">
+  
+  {{- with site.Params.header_image }}
+    {{- with resources.Get .path }}
+      <img src="{{ .RelPermalink }}" alt="{{ $.Site.Params.header_image.alt | default "Image" }}" style="margin-bottom: 10px;">
+    {{- end }}
+  {{- end }}
+  
+  <h2 style="color: #cc6699; font-family: 'Times New Roman', serif; font-size: 2rem;">{{ .Title }}</h2>
+  
+  <div style="max-width: 600px; line-height: 1.6;">
+    {{ .Content }} 
+  </div>
+<!---
+Yes, this is correct, DO NOT CLOSE the html tag
+</div>
+--->
+{{ end }}
