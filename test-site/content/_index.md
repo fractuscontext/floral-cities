@@ -16,6 +16,6 @@ Welcome to my life!!!!
 ### Main Directory
 
 <ul style="list-style-type: none; padding-left: 0; line-height: 1.8;">
-<li>📝 <strong><a href="/posts/">My Web Diary</a></strong> - Read my latest thoughts, coding updates, and brain dumps.</li>
-<li>🏷️ <strong><a href="/tags/">Tag Index</a></strong> - Search my archives by specific topics.</li>
+<li>📝 <strong><a href="./posts/">My Web Diary</a></strong> - Read my latest thoughts, coding updates, and brain dumps.</li>
+<li>🏷️ <strong><a href="./tags/">Tag Index</a></strong> - Search my archives by specific topics.</li>
 </ul>
