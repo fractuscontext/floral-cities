@@ -11,7 +11,8 @@ SPDX-License-Identifier: MIT
     --layout-margin-left: 10%;
     --layout-padding: 20px 5%;
     --layout-max-width: 80ch;
-    --layout-card-max-width: 31.25rem; /* 500px */
+    --layout-card-max-width: 31.25rem;
+    /* 500px */
 
     /* Typography */
     --font-primary: "Comic Sans MS", "Chalkboard SE", "Comic Sans", cursive;
@@ -22,14 +23,22 @@ SPDX-License-Identifier: MIT
     --line-height-base: 1.6;
 
     /* Spacing & Radii */
-    --spacing-xs: 0.25rem;   /* 4px */
-    --spacing-sm: 0.5rem;    /* 8px */
-    --spacing-md: 0.9375rem; /* 15px */
-    --spacing-block: 1.25rem;/* 20px */
-    --spacing-lg: 1.5625rem; /* 25px */
-    --spacing-xl: 1.875rem;  /* 30px */
-    --spacing-2xl: 2.5rem;   /* 40px */
-    --list-indent: 0.9375rem;/* 15px */
+    --spacing-xs: 0.25rem;
+    /* 4px */
+    --spacing-sm: 0.5rem;
+    /* 8px */
+    --spacing-md: 0.9375rem;
+    /* 15px */
+    --spacing-block: 1.25rem;
+    /* 20px */
+    --spacing-lg: 1.5625rem;
+    /* 25px */
+    --spacing-xl: 1.875rem;
+    /* 30px */
+    --spacing-2xl: 2.5rem;
+    /* 40px */
+    --list-indent: 0.9375rem;
+    /* 15px */
     --radius-sm: 4px;
     --radius-md: 6px;
 
@@ -60,8 +69,10 @@ SPDX-License-Identifier: MIT
     --scrollbar-arrow-down: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M4 5 L8 11 L12 5 Z" fill="%23333333"/></svg>');
 
     /* Scrollbar Faces - Light Mode */
-    --scrollbar-face: #ffcce5;        /* Darker than border-light, lighter than accent */
-    --scrollbar-face-active: #c27a9c; /* A nice mid-tone pressed state */
+    --scrollbar-face: #ffcce5;
+    /* Darker than border-light, lighter than accent */
+    --scrollbar-face-active: #c27a9c;
+    /* A nice mid-tone pressed state */
 }
 
 /* Aspect-ratio layout override */
@@ -80,8 +91,13 @@ SPDX-License-Identifier: MIT
 
 /* Light scheme preference rules */
 @media (prefers-color-scheme: light) {
-    .theme-toggle-label .icon-not-toggled { display: block; }
-    .theme-toggle-label .icon-toggled { display: none; }
+    .theme-toggle-label .icon-not-toggled {
+        display: block;
+    }
+
+    .theme-toggle-label .icon-toggled {
+        display: none;
+    }
 
     :root:has(#dark-mode-toggle:checked) {
         --color-bg: #1e1e1e;
@@ -103,14 +119,24 @@ SPDX-License-Identifier: MIT
         --scrollbar-arrow-down: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M4 5 L8 11 L12 5 Z" fill="%23e7e6e3"/></svg>');
     }
 
-    :root:has(#dark-mode-toggle:checked) .theme-toggle-label .icon-not-toggled { display: none; }
-    :root:has(#dark-mode-toggle:checked) .theme-toggle-label .icon-toggled { display: block; }
+    :root:has(#dark-mode-toggle:checked) .theme-toggle-label .icon-not-toggled {
+        display: none;
+    }
+
+    :root:has(#dark-mode-toggle:checked) .theme-toggle-label .icon-toggled {
+        display: block;
+    }
 }
 
 /* Dark scheme preference rules */
 @media (prefers-color-scheme: dark) {
-    .theme-toggle-label .icon-not-toggled { display: none; }
-    .theme-toggle-label .icon-toggled { display: block; }
+    .theme-toggle-label .icon-not-toggled {
+        display: none;
+    }
+
+    .theme-toggle-label .icon-toggled {
+        display: block;
+    }
 
     :root:not(:has(#dark-mode-toggle:checked)) {
         --color-bg: #1e1e1e;
@@ -132,12 +158,19 @@ SPDX-License-Identifier: MIT
         --scrollbar-arrow-down: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M4 5 L8 11 L12 5 Z" fill="%23e7e6e3"/></svg>');
 
         /* Scrollbar Faces - Dark Mode */
-        --scrollbar-face: #6d294d;        /* Stands out from the track, but not blinding */
-        --scrollbar-face-active: #b57095; /* Brighter for pressed state, but muted */
+        --scrollbar-face: #6d294d;
+        /* Stands out from the track, but not blinding */
+        --scrollbar-face-active: #b57095;
+        /* Brighter for pressed state, but muted */
     }
 
-    :root:has(#dark-mode-toggle:checked) .theme-toggle-label .icon-not-toggled { display: block; }
-    :root:has(#dark-mode-toggle:checked) .theme-toggle-label .icon-toggled { display: none; }
+    :root:has(#dark-mode-toggle:checked) .theme-toggle-label .icon-not-toggled {
+        display: block;
+    }
+
+    :root:has(#dark-mode-toggle:checked) .theme-toggle-label .icon-toggled {
+        display: none;
+    }
 }
 
 /* Theme Toggle Button & Icons */
@@ -179,9 +212,8 @@ SPDX-License-Identifier: MIT
    ========================================================================== */
 body {
     background-color: var(--color-bg);
-    background-image:
-        linear-gradient(var(--bg-overlay), var(--bg-overlay)),
-        url('{{ (resources.Get "images/eyelet.webp" | fingerprint).Permalink }}');
+    background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)),
+    url('{{ (resources.Get "images/eyelet.webp" | fingerprint).Permalink }}');
     background-size: min(87px, 10vw) auto;
     background-repeat: repeat-y;
     background-position: left top;
@@ -250,11 +282,14 @@ a:hover {
 }
 
 /* Standard Text & List Spacing */
-p, ul, ol {
+p,
+ul,
+ol {
     margin-bottom: var(--spacing-sm);
 }
 
-ul, ol {
+ul,
+ol {
     margin-left: 0;
     padding-left: var(--list-indent);
 }
@@ -264,8 +299,8 @@ li {
 }
 
 /* Nested lists fix (prevents double-margins) */
-li > ul,
-li > ol {
+li>ul,
+li>ol {
     margin-top: var(--spacing-sm);
     margin-bottom: 0;
     padding-left: var(--list-indent);
@@ -522,7 +557,7 @@ svg {
     user-select: all;
 }
 
-:not(pre) > code {
+:not(pre)>code {
     font-family: var(--font-mono);
     font-size: 0.85em;
     padding: 0.15em 0.35em;
@@ -555,17 +590,50 @@ svg {
 
 /* Tables */
 table {
+    display: block;
     width: 100%;
     max-width: 100%;
+    overflow-x: auto;
     border-collapse: collapse;
-    table-layout: auto;
+    margin: var(--spacing-block) 0;
+    padding-bottom: 4px;
+    /* Prevents scrollbars from touching the bottom border */
+    -webkit-overflow-scrolling: touch;
 }
 
-th, td {
-    padding: var(--spacing-sm);
+th,
+td {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    /* 4px 8px */
     text-align: left;
-    overflow-wrap: break-word;
-    hyphens: auto;
+    vertical-align: middle;
+    word-break: normal;
+    overflow-wrap: normal;
+}
+
+/* Header styling with distinct separation */
+th {
+    color: var(--color-heading-dark);
+    white-space: normal;
+    border-bottom: 2px dotted var(--color-border-light);
+}
+
+/* Row dividers */
+td {
+    border-bottom: 1px dotted var(--color-border-light);
+}
+
+/* Optional: Clean bottom edge */
+tr:last-child td {
+    border-bottom: 2px dotted var(--color-border-light);
+}
+
+/* Keep formulas, KaTeX symbols, and code snippets intact */
+td .katex,
+th .katex,
+td code,
+th code {
+    white-space: nowrap;
 }
 
 /* 404 Error Page */
@@ -616,25 +684,21 @@ th, td {
 }
 
 /* ==========================================================================
-   6. Windows 95 Pink Scrollbars (Code Blocks & LaTeX Only)
+   6. Windows 95 Pink Scrollbars (Code Blocks, LaTeX & Tables)
    ========================================================================== */
 
-/* Ensure default system scrollbars for the main page and vertical scroll */
-html, body {
-    scrollbar-width: auto;
-    scrollbar-color: auto;
-}
-
-/* WebKit Base - Set horizontal height only for these containers */
+/* WebKit Base */
 .code-content::-webkit-scrollbar,
-.math-scroll-wrapper::-webkit-scrollbar {
+.math-scroll-wrapper::-webkit-scrollbar,
+table::-webkit-scrollbar {
     height: 16px;
-    width: 0px; /* Prevents vertical scrollbars in these boxes if any occur */
+    width: 0px;
 }
 
-/* The Track (Checkerboard dither pattern) */
+/* The Track (Checkerboard dither) */
 .code-content::-webkit-scrollbar-track,
-.math-scroll-wrapper::-webkit-scrollbar-track {
+.math-scroll-wrapper::-webkit-scrollbar-track,
+table::-webkit-scrollbar-track {
     background-color: var(--color-code-header-bg);
     background-image:
         linear-gradient(45deg, var(--color-border-light) 25%, transparent 25%, transparent 75%, var(--color-border-light) 75%, var(--color-border-light)),
@@ -643,9 +707,10 @@ html, body {
     background-position: 0 0, 2px 2px;
 }
 
-/* The Thumb (Draggable with 3D bevels) */
+/* The Thumb */
 .code-content::-webkit-scrollbar-thumb,
-.math-scroll-wrapper::-webkit-scrollbar-thumb {
+.math-scroll-wrapper::-webkit-scrollbar-thumb,
+table::-webkit-scrollbar-thumb {
     background-color: var(--scrollbar-face);
     border-top: 2px solid var(--scrollbar-bevel-light);
     border-left: 2px solid var(--scrollbar-bevel-light);
@@ -653,15 +718,16 @@ html, body {
     border-bottom: 2px solid var(--scrollbar-bevel-dark);
 }
 
-/* Active Thumb (Pressed state) */
 .code-content::-webkit-scrollbar-thumb:active,
-.math-scroll-wrapper::-webkit-scrollbar-thumb:active {
+.math-scroll-wrapper::-webkit-scrollbar-thumb:active,
+table::-webkit-scrollbar-thumb:active {
     background-color: var(--scrollbar-face-active);
 }
 
-/* End Buttons (Left / Right Arrows) - Base Styles */
+/* End Buttons */
 .code-content::-webkit-scrollbar-button,
-.math-scroll-wrapper::-webkit-scrollbar-button {
+.math-scroll-wrapper::-webkit-scrollbar-button,
+table::-webkit-scrollbar-button {
     display: block;
     width: 16px;
     height: 16px;
@@ -672,17 +738,18 @@ html, body {
     border-bottom: 2px solid var(--scrollbar-bevel-dark);
 }
 
-/* Hide the blank duplicate button slots at the opposite ends */
 .code-content::-webkit-scrollbar-button:horizontal:start:increment,
 .math-scroll-wrapper::-webkit-scrollbar-button:horizontal:start:increment,
 .code-content::-webkit-scrollbar-button:horizontal:end:decrement,
-.math-scroll-wrapper::-webkit-scrollbar-button:horizontal:end:decrement {
+.math-scroll-wrapper::-webkit-scrollbar-button:horizontal:end:decrement,
+table::-webkit-scrollbar-button:horizontal:start:increment,
+table::-webkit-scrollbar-button:horizontal:end:decrement {
     display: none;
 }
 
-/* Pressed Button State */
 .code-content::-webkit-scrollbar-button:active,
-.math-scroll-wrapper::-webkit-scrollbar-button:active {
+.math-scroll-wrapper::-webkit-scrollbar-button:active,
+table::-webkit-scrollbar-button:active {
     border-top: 2px solid var(--scrollbar-bevel-dark);
     border-left: 2px solid var(--scrollbar-bevel-dark);
     border-right: 2px solid var(--scrollbar-bevel-light);
@@ -690,23 +757,24 @@ html, body {
     background-color: var(--scrollbar-face-active);
 }
 
-/* Directional Arrow SVGs for Left and Right */
 .code-content::-webkit-scrollbar-button:horizontal:decrement,
-.math-scroll-wrapper::-webkit-scrollbar-button:horizontal:decrement {
+.math-scroll-wrapper::-webkit-scrollbar-button:horizontal:decrement,
+table::-webkit-scrollbar-button:horizontal:decrement {
     background-image: var(--scrollbar-arrow-left);
     background-repeat: no-repeat;
     background-position: center;
 }
 
 .code-content::-webkit-scrollbar-button:horizontal:increment,
-.math-scroll-wrapper::-webkit-scrollbar-button:horizontal:increment {
+.math-scroll-wrapper::-webkit-scrollbar-button:horizontal:increment,
+table::-webkit-scrollbar-button:horizontal:increment {
     background-image: var(--scrollbar-arrow-right);
     background-repeat: no-repeat;
     background-position: center;
 }
 
-/* Corner junction */
 .code-content::-webkit-scrollbar-corner,
-.math-scroll-wrapper::-webkit-scrollbar-corner {
+.math-scroll-wrapper::-webkit-scrollbar-corner,
+table::-webkit-scrollbar-corner {
     background-color: var(--color-code-header-bg);
 }
