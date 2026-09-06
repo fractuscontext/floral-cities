@@ -1,0 +1,37 @@
+[back_to_top]
+other = "top"
+
+[footer_thanks]
+other = "Thanks for visiting!"
+
+[footer_copyright]
+other = "Copyright (c) {{ .Year }} {{ .SiteTitle }}. All rights reserved."
+
+[badge_default_alt]
+other = "Badge"
+
+[toggle_theme]
+other = "Toggle Theme"
+
+[articles_count]
+one = "1 Article"
+other = "{{ .Count }} Articles"
+
+[pagination_prev]
+other = "« prev"
+
+[pagination_next]
+other = "next »"
+
+[created_on]
+other = "Created on:"
+
+[updated_on]
+other = "Updated on:"
+
+[filter_by_tags]
+other = "Filter posts by tags:"
+
+[tag_all]
+other = "all"
+

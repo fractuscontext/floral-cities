@@ -18,6 +18,7 @@ SPDX-License-Identifier: MIT
     --font-primary: "Comic Sans MS", "Chalkboard SE", "Comic Sans", cursive;
     --font-secondary: Arial, Helvetica, sans-serif;
     --font-mono: "MenloLGS NF", "MesloLGS NF", Menlo, Consolas, Monaco, "Courier New", monospace;
+    --font-typewriter: "Courier New", Courier, monospace;
     --font-serif: "Times New Roman", Times, serif;
     --font-size-base: clamp(0.95rem, 0.95rem, 1.15rem);
     --line-height-base: 1.6;
@@ -267,17 +268,21 @@ body {
 }
 
 /* Links */
-a:link,
-a:visited,
-a:active {
+/* Links */
+a {
     color: var(--color-accent);
     text-decoration: underline dotted 2px;
     text-underline-offset: 4px;
+    text-decoration-skip-ink: none; /* Prevents Safari from chewing up dots */
+}
+
+a:visited {
+    color: var(--color-accent);
 }
 
 a:hover {
     color: var(--color-accent-hover);
-    text-decoration-style: solid;
+    text-decoration: underline solid 2px; /* Restate full declaration to force WebKit repaint */
     cursor: pointer;
 }
 
@@ -334,11 +339,39 @@ hr {
     margin: var(--spacing-block) auto;
 }
 
+/* ==========================================================================
+   Footer Styles
+   ========================================================================== */
 footer {
     margin-top: var(--spacing-2xl);
     font-family: var(--font-secondary);
     font-size: 0.85rem;
     text-align: center;
+}
+
+.footer-separator {
+    text-align: center;
+    margin: var(--spacing-block) 0;
+}
+
+.footer-meta {
+    font-family: var(--font-typewriter);
+    font-size: 0.85rem; /* Courier New has a small x-height; 0.9rem balances it nicely with 0.85rem Arial */
+}
+
+.footer-badges {
+    display: flex;
+    gap: var(--spacing-xs);
+    justify-content: center;
+    margin: var(--spacing-block) 0;
+    flex-wrap: wrap;
+}
+
+.footer-badge-img {
+    border: 0;
+    max-height: 31px; /* Standard 88x31 retro button badge */
+    width: auto;
+    display: inline-block;
 }
 
 /* ==========================================================================
@@ -410,33 +443,282 @@ blockquote {
     margin-bottom: var(--spacing-xl);
 }
 
-/* Post List */
-.post-list {
-    list-style: none;
-    padding: var(--spacing-xs);
-    font-family: var(--font-mono);
+/* ==========================================================================
+   Timeline Archive List (Grouped by Year & Month)
+   ========================================================================== */
+.timeline-container {
+    margin: var(--spacing-block) 0;
 }
 
-.post-list-item {
+.timeline-year-group {
+    position: relative;
+    margin-bottom: var(--spacing-xl);
+}
+
+/*
+   Continuous single dotted line from year node down to the end of the year group.
+   Positioned precisely in the center of the node column (4.6rem + 0.75rem).
+*/
+.timeline-year-group::before {
+    content: "";
+    position: absolute;
+    top: 1.1rem;
+    bottom: 0.5rem;
+    left: calc(4.6rem + 0.75rem);
+    width: 0;
+    border-left: 2px dotted var(--color-border-light);
+    z-index: 1;
+}
+
+/* --- Year Header --- */
+.timeline-year-header {
+    display: grid;
+    grid-template-columns: 4rem 1.5rem 1fr;
+    align-items: center;
+    padding: var(--spacing-xs) 0.6rem;
+    margin-bottom: var(--spacing-xs);
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-year {
+    font-family: var(--font-primary);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-heading-dark);
+    line-height: 1;
+}
+
+/* Year Ring (○) */
+.timeline-year-node {
     display: flex;
-    gap: var(--list-indent);
-    margin-bottom: 1.5rem;
+    justify-content: center;
+    align-items: center;
 }
 
-.post-list-time {
+.timeline-year-node::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--color-accent);
+    background-color: var(--color-bg);
+}
+
+.timeline-year-count {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-meta);
+    padding-left: var(--spacing-xs);
+}
+
+/* --- Month Split / Sub-header --- */
+.timeline-month-group {
+    margin: var(--spacing-xs) 0;
+}
+
+.timeline-month-header {
+    display: grid;
+    grid-template-columns: 4rem 1.5rem 1fr;
+    align-items: center;
+    padding: 0.35rem 0.6rem;
+    margin-top: 0.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-month {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-accent);
+}
+
+/* Month Node: Dainty Diamond (◇) centered on the timeline */
+.timeline-month-node {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.timeline-month-node::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    transform: rotate(45deg);
+    border: 1.5px solid var(--color-accent);
+    background-color: var(--color-bg);
+}
+
+/* Horizontal dotted divider next to the month */
+.timeline-month-divider {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding-left: var(--spacing-xs);
+}
+
+.timeline-month-label {
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    color: var(--color-meta);
+}
+
+.timeline-month-line {
+    flex: 1;
+    height: 0;
+    border-top: 1px dotted var(--color-border-light);
+    opacity: 0.6;
+}
+
+/* --- Posts List --- */
+.timeline-post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.timeline-post-item {
+    margin: 3px 0;
+}
+
+/* Full row clickable link */
+.timeline-post-link {
+    display: grid;
+    grid-template-columns: 4rem 1.5rem 1fr auto;
+    align-items: center;
+    padding: 0.5rem 0.6rem;
+    border-radius: var(--radius-md);
+    text-decoration: none !important;
+    color: var(--color-accent);
+    position: relative;
+    z-index: 2;
+    transition: background-color 0.15s ease;
+}
+
+/* Row Hover State */
+.timeline-post-link:hover {
+    background-color: rgba(204, 102, 153, 0.12);
+}
+
+.timeline-post-link,
+.timeline-post-link:hover {
+    text-decoration: none !important;
+}
+
+:root:has(#dark-mode-toggle:checked) .timeline-post-link:hover {
+    background-color: rgba(230, 128, 179, 0.14);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not(:has(#dark-mode-toggle:checked)) .timeline-post-link:hover {
+        background-color: rgba(230, 128, 179, 0.14);
+    }
+}
+
+/* Date */
+.timeline-post-date {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-meta);
     white-space: nowrap;
 }
 
-.post-list-info {
+/* Post Node: dot • by default */
+.timeline-post-node {
     display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
-.post-list-desc {
+.timeline-post-node::after {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--color-meta);
+    box-shadow: 0 0 0 3px var(--color-bg); /* Mask the track line directly under dot */
+    transition: all 0.15s ease;
+}
+
+/* Hover: dot morphs into vertical bar | */
+.timeline-post-link:hover .timeline-post-node::after {
+    width: 3px;
+    height: 16px;
+    border-radius: 2px;
+    background-color: var(--color-accent);
+    box-shadow: none;
+}
+
+/* Title & Description */
+.timeline-post-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding-left: var(--spacing-xs);
+    padding-right: var(--spacing-sm);
+    overflow: hidden;
+}
+
+.timeline-post-title {
     font-family: var(--font-primary);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
+    color: var(--color-accent);
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.timeline-post-link:hover .timeline-post-title {
+    color: var(--color-accent-hover);
+}
+
+.timeline-post-desc {
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
     color: var(--color-meta);
+    line-clamp: 2;
+
+    /* 2-line clamp */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    line-height: 1.35;
+}
+
+/* Tags on right */
+.timeline-post-tags {
+    font-family: var(--font-mono);
+    display: flex;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--color-meta);
+    white-space: nowrap;
+}
+
+.timeline-post-link:hover .timeline-post-tags {
+    color: var(--color-accent-hover);
+}
+
+@media (max-width: 540px) {
+    .timeline-year-group::before {
+        left: calc(3.6rem + 0.6rem);
+    }
+
+    .timeline-year-header,
+    .timeline-month-header,
+    .timeline-post-link {
+        grid-template-columns: 3rem 1.2rem 1fr;
+    }
+
+    .timeline-post-tags {
+        display: none;
+    }
 }
 
 /* Tags */

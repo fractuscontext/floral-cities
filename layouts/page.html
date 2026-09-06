@@ -10,9 +10,16 @@
 
     <!-- Move Meta directly under the title -->
     <p class="post-meta">
-        <span class="meta-block">Created on: <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time></span>
+        <span class="meta-block">
+            {{ i18n "created_on" }}
+            <time datetime="{{ .Date.Format " 2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
+        </span>
         <span class="meta-divider">・</span>
-        <span class="meta-block">Updated on: <time datetime="{{ .Lastmod.UTC.Format "2006-01-02" }}">{{ .Lastmod.UTC.Format "January 2, 2006" }}</time></span>
+        <span class="meta-block">
+            {{ i18n "updated_on" }}
+            <time datetime="{{ .Lastmod.UTC.Format " 2006-01-02" }}">{{ .Lastmod.UTC | time.Format ":date_long"
+                }}</time>
+        </span>
     </p>
 
     <!-- Description sits below the dates, above the HR/Content -->

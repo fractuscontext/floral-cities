@@ -1,16 +1,20 @@
 {{- /*
-            SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
-            SPDX-License-Identifier: MIT
-            */ -}}
+    SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+    SPDX-License-Identifier: MIT
+*/ -}}
+
 {{- $currentPage := . -}}
+{{- $postsPage := site.GetPage "posts" -}}
+{{- $postsUrl := cond (ne $postsPage nil) $postsPage.RelPermalink ("/posts/" | relLangURL) -}}
+
 <div class="tag-list">
-    <div>Filter posts by tags:</div>
+    <div>{{ i18n "filter_by_tags" }}</div>
     <ul>
         {{- /* 'all' link */ -}}
-        {{- if eq $currentPage.RelPermalink "/posts/" }}
-            <li class="active">all</li>
+        {{- if eq $currentPage.RelPermalink $postsUrl }}
+            <li class="active">{{ i18n "tag_all" }}</li>
         {{- else }}
-            <li><a href="/posts/">all</a></li>
+            <li><a href="{{ $postsUrl }}">{{ i18n "tag_all" }}</a></li>
         {{- end }}
         {{- /* Individual tags */ -}}
         {{- range site.Taxonomies.tags.Alphabetical }}

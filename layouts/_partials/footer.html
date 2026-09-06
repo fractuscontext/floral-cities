@@ -1,75 +1,59 @@
 {{- /*
-            SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
-            SPDX-License-Identifier: MIT
-            */ -}}
+    SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+    SPDX-License-Identifier: MIT
+*/ -}}
 {{- with site.Params.retro_footer.separator_image }}
-    <div aria-hidden="true" style="text-align: center; margin: 20px 0;">
-        {{- /* Fingerprinting the separator image */ -}}
+    <div class="footer-separator" aria-hidden="true">
         {{- with (resources.Get . | fingerprint) }}
-            <img src="{{ .RelPermalink }}"
-                 alt="----------------"
-                 style="max-width: 100%;
-                        height: auto">
+            <img src="{{ .RelPermalink }}" alt="">
         {{- end }}
     </div>
 {{- else }}
     <hr>
 {{- end }}
-<!-- Added monospace styling to the 'top' link -->
-<p style="font-family: 'Courier New', Courier, monospace;"><a href="#">top</a></p>
-<!-- Added monospace styling to the footer lines block -->
-<p style="font-family: 'Courier New', Courier, monospace;">
+
+<p class="footer-meta">
+    <a href="#">{{ i18n "back_to_top" | default "top" }}</a>
+</p>
+
+<p class="footer-meta">
     {{- with site.Params.retro_footer.lines }}
         {{- range $index, $line := . }}
-            {{- if gt $index 0 }}
-                <br>
-            {{ end }}
+            {{- if gt $index 0 }}<br>{{ end }}
             {{- $line | safeHTML }}
         {{- end }}
     {{- else }}
-        Thanks for visiting!
+        {{ i18n "footer_thanks" | default "Thanks for visiting!" }}
         <br>
-        Copyright (c) {{ now.Year }} {{ site.Title }}. All rights reserved.
+        {{ i18n "footer_copyright" (dict "Year" now.Year "SiteTitle" site.Title) | default (printf "Copyright (c) %d %s. All rights reserved." now.Year site.Title) }}
     {{- end }}
 </p>
-<div style="display: flex;
-            gap: 5px;
-            justify-content: center;
-            margin: 20px 0;
-            flex-wrap: wrap">
-    {{- range site.Params.retro_footer.badges }}
-        {{- $imgUrl := "" }}
-        {{- $hasImage := false }}
-        {{- if hasPrefix .image "http" }}
-            {{- /* Skip fingerprinting for external URLs */ -}}
-            {{- $imgUrl = .image }}
-            {{- $hasImage = true }}
-        {{- else }}
-            {{- /* Fingerprinting local badges */ -}}
-            {{- with (resources.Get .image | fingerprint) }}
-                {{- $imgUrl = .RelPermalink }}
+
+{{- with site.Params.retro_footer.badges }}
+    <div class="footer-badges">
+        {{- range . }}
+            {{- $imgUrl := "" }}
+            {{- $hasImage := false }}
+            {{- if hasPrefix .image "http" }}
+                {{- $imgUrl = .image }}
                 {{- $hasImage = true }}
-            {{- end }}
-        {{- end }}
-        {{- if $hasImage }}
-            {{- if .url }}
-                <a href="{{ .url }}"
-                   {{ if hasPrefix .url "http" }}target="_blank"
-                   rel="noopener"
-                   {{ end }}>
-                    <img style="border:0;
-                                max-height:31px;
-                                width:auto"
-                         src="{{ $imgUrl }}"
-                         alt="{{ .alt | default "Badge" }}" />
-                </a>
             {{- else }}
-                <img style="border:0;
-                            max-height:31px;
-                            width:auto"
-                     src="{{ $imgUrl }}"
-                     alt="{{ .alt | default "Badge" }}" />
+                {{- with (resources.Get .image | fingerprint) }}
+                    {{- $imgUrl = .RelPermalink }}
+                    {{- $hasImage = true }}
+                {{- end }}
+            {{- end }}
+
+            {{- if $hasImage }}
+                {{- $altText := .alt | default (i18n "badge_default_alt" | default "Badge") }}
+                {{- if .url }}
+                    <a href="{{ .url }}" {{- if hasPrefix .url "http" }} target="_blank" rel="noopener"{{ end }}>
+                        <img class="footer-badge-img" src="{{ $imgUrl }}" alt="{{ $altText }}" />
+                    </a>
+                {{- else }}
+                    <img class="footer-badge-img" src="{{ $imgUrl }}" alt="{{ $altText }}" />
+                {{- end }}
             {{- end }}
         {{- end }}
-    {{- end }}
-</div>
+    </div>
+{{- end }}
