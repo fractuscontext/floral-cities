@@ -1,0 +1,32 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+SPDX-License-Identifier: MIT
+**/
+
+/* Pagination */
+.pagination {
+    margin-top: 2em;
+    text-align: center;
+    font-family: var(--font-mono);
+}
+
+.pagination-disabled,
+.pagination-current {
+    color: var(--color-meta);
+}
+
+.pagination-dots {
+    color: var(--color-meta);
+    margin: 0 4px;
+}
+
+/* Single-digit page links are tiny; enlarge the hit area without affecting layout */
+.pagination-page {
+    position: relative;
+}
+
+.pagination-page::after {
+    content: "";
+    position: absolute;
+    inset: -0.5em -0.6em;
+}

@@ -1,0 +1,78 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+SPDX-License-Identifier: MIT
+**/
+
+/* ==========================================================================
+   4. Sections & Post Content
+   ========================================================================== */
+main section {
+    padding-bottom: var(--spacing-lg);
+    border-top: 2px dotted var(--color-border-light);
+}
+
+section.post-content {
+    border-top: none;
+}
+
+.post-back {
+    margin-top: var(--spacing-xl);
+    font-family: var(--font-primary);
+}
+
+section :is(h1, h2, h3, h4, h5) {
+    color: var(--color-heading-dark);
+    position: relative;
+}
+
+section :is(h1, h2, h3, h4, h5)::before {
+    content: "#";
+    color: var(--color-accent);
+    position: absolute;
+    left: -20px;
+}
+
+.post-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.post-meta {
+    font-size: 0.75rem;
+    color: var(--color-meta);
+    margin-bottom: var(--spacing-lg);
+    font-family: var(--font-mono);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+@media (max-width: 600px) {
+    .post-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+    }
+
+    .meta-divider {
+        display: none;
+    }
+}
+
+/* Post Description & Blockquote (Unified Style) */
+.post-description,
+blockquote {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--color-caption);
+    padding-left: var(--spacing-md);
+    border-left: 3px dotted var(--color-border-light);
+    margin: var(--spacing-block) 0;
+}
+
+.post-description {
+    margin-top: 0;
+    margin-bottom: var(--spacing-xl);
+}

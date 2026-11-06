@@ -1,0 +1,10 @@
+{{- /*
+    SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+    SPDX-License-Identifier: MIT
+
+    Headings link to themselves so any section can be shared as page#anchor.
+    */ -}}
+<h{{ .Level }} id="{{ .Anchor }}"
+    {{- range $k, $v := .Attributes }}{{ if ne $k "id" }} {{ $k }}="{{ $v }}"{{ end }}{{ end }}>
+    <a class="heading-anchor" href="#{{ .Anchor }}">{{ .Text }}</a>
+</h{{ .Level }}>

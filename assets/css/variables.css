@@ -1,0 +1,95 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+SPDX-License-Identifier: MIT
+**/
+
+/* ==========================================================================
+   1. Theme Variables & Base Configurations
+   ========================================================================== */
+:root {
+    /* Layout & Sizing */
+    --layout-margin-left: 10%;
+    --layout-padding: 20px 5%;
+    --layout-max-width: 80ch;
+    --layout-card-max-width: 31.25rem;
+    /* 500px */
+
+    /* Typography
+       Latin fonts first, then CJK fonts so Chinese/Japanese/Korean don't fall back to
+       whatever the OS picks (e.g. serif Songti next to Comic Sans).
+       --font-cjk / --font-mono-cjk are swapped per language in fonts.css. */
+    --font-cjk:
+        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC",
+        "Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic", "Noto Sans CJK JP",
+        "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans CJK KR";
+    /* Only fonts that pair Latin and CJK at exact 1:2 widths keep code columns aligned */
+    --font-mono-cjk: "Sarasa Mono SC", "Noto Sans Mono CJK SC";
+    --font-primary: "Comic Sans MS", "Chalkboard SE", "Comic Sans", var(--font-cjk), cursive;
+    --font-secondary: Arial, Helvetica, var(--font-cjk), sans-serif;
+    --font-mono: "MenloLGS NF", "MesloLGS NF", Menlo, Consolas, Monaco, "Courier New", var(--font-mono-cjk), var(--font-cjk), monospace;
+    --font-typewriter: "Courier New", Courier, var(--font-mono-cjk), var(--font-cjk), monospace;
+    --font-serif: "Times New Roman", Times, serif;
+    --font-size-base: clamp(0.95rem, 0.95rem, 1.15rem);
+    --line-height-base: 1.6;
+
+    /* Spacing & Radii */
+    --spacing-xs: 0.25rem;
+    /* 4px */
+    --spacing-sm: 0.5rem;
+    /* 8px */
+    --spacing-md: 0.9375rem;
+    /* 15px */
+    --spacing-block: 1.25rem;
+    /* 20px */
+    --spacing-lg: 1.5625rem;
+    /* 25px */
+    --spacing-xl: 1.875rem;
+    /* 30px */
+    --spacing-2xl: 2.5rem;
+    /* 40px */
+    --list-indent: 0.9375rem;
+    /* 15px */
+    --radius-sm: 4px;
+    --radius-md: 6px;
+
+    /* Light Theme (Default Palette) */
+    --color-bg: #faf8f5;
+    --color-text: #333333;
+    --color-accent: #cc6699;
+    --color-accent-hover: #a54b77;
+    --color-accent-wash: rgba(204, 102, 153, 0.12);
+    --color-glyphs: #000;
+    --color-heading-dark: #000000;
+    --color-meta: #666666;
+    --color-border-light: #e6a8c7;
+    --color-tag-bracket: #7b8fa3;
+    --color-tag-active: #777777;
+    --color-caption: #555555;
+    --color-code-header-bg: #fdf5f9;
+    --bg-overlay: rgba(255, 255, 255, 0);
+
+    /* UI & Toggle Icons */
+    --color-toggle-sun: #d97706; /* amber, readable on the light background */
+    --color-toggle-moon: #eab308;
+
+    /* Win95 Pink Scrollbar Tokens */
+    --scrollbar-bevel-light: rgba(255, 255, 255, 0.6);
+    --scrollbar-bevel-dark: rgba(0, 0, 0, 0.4);
+    --scrollbar-arrow-left: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M11 4 L5 8 L11 12 Z" fill="%23333333"/></svg>');
+    --scrollbar-arrow-right: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M5 4 L11 8 L5 12 Z" fill="%23333333"/></svg>');
+    --scrollbar-arrow-up: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M4 11 L8 5 L12 11 Z" fill="%23333333"/></svg>');
+    --scrollbar-arrow-down: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M4 5 L8 11 L12 5 Z" fill="%23333333"/></svg>');
+
+    /* Scrollbar Faces - Light Mode */
+    --scrollbar-face: #ffcce5;
+    /* Darker than border-light, lighter than accent */
+    --scrollbar-face-active: #c27a9c;
+    /* A nice mid-tone pressed state */
+}
+
+/* Aspect-ratio layout override */
+@media (aspect-ratio: 3/2) {
+    :root {
+        --layout-margin-left: 20%;
+    }
+}

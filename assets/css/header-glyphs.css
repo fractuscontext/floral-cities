@@ -1,0 +1,58 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+SPDX-License-Identifier: MIT
+**/
+
+/* Drifting script behind the header */
+/* I HAVE NO IDEA HOW THIS WORKS AI WROTE THIS FROM ME */
+.header-glyphs {
+    --font-glyphs: "Noto Sans Runic", "Segoe UI Historic", "Apple Symbols", serif;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+    font-family: var(--font-glyphs);
+    color: var(--color-glyphs);
+}
+
+.header-glyphs span {
+    position: absolute;
+    left: calc(var(--i) * (96% / var(--total, 28)) + 2%);
+    top: var(--y);
+    font-size: calc(1.6rem + var(--s) * 0.4rem);
+    line-height: 1;
+    opacity: 0.05;
+    /* Negative delays start each glyph mid-cycle so nothing pops in on load.
+       --glyph-t (set in head.html) offsets by wall-clock time so the motion carries across pages;
+       if you change the 15s/7s durations, update the modulo there too. */
+    animation:
+        glyph-drift 15s ease-in-out calc(var(--i) * -3.1s - var(--glyph-t, 0s)) infinite alternate,
+        glyph-fade 7s ease-in-out calc(var(--i) * -1.3s - var(--glyph-t, 0s)) infinite alternate;
+}
+
+@keyframes glyph-drift {
+    from {
+        transform: translate(-1.25rem, 0.25rem) rotate(-4deg);
+    }
+    to {
+        transform: translate(1.25rem, -0.25rem) rotate(4deg);
+    }
+}
+
+@keyframes glyph-fade {
+    from {
+        opacity: 0.04;
+    }
+    to {
+        opacity: 0.22;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .header-glyphs span {
+        animation: none;
+        opacity: 0.12;
+    }
+}

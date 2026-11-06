@@ -72,12 +72,11 @@
           '';
         in
         {
-          default = pkgs.mkShell {
+          default = pkgs.mkShellNoCC {
             # Make hugo, dependencies, custom scripts, and linters available in the shell
             packages = [
               pkgs.go
               pkgs.hugo
-              pkgs.djlint
               pkgs.reuse
               pkgs.rumdl
               pkgs.nixfmt

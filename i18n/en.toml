@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+
 [back_to_top]
 other = "top"
 
@@ -23,6 +27,9 @@ other = "« prev"
 [pagination_next]
 other = "next »"
 
+[back_to_section]
+other = "« back to {{ .Section }}"
+
 [created_on]
 other = "Created on:"
 
@@ -35,3 +42,12 @@ other = "Filter posts by tags:"
 [tag_all]
 other = "all"
 
+
+[code_open]
+other = "open in new tab"
+
+[code_copy]
+other = "copy"
+
+[code_copy_done]
+other = "copied!"

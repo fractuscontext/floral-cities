@@ -1,7 +1,7 @@
 {{- /*
-SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+    SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
     SPDX-License-Identifier: MIT
-    */ -}}
+*/ -}}
 
 {{- $paginator := .Paginate .Pages.ByDate.Reverse }}
 
@@ -20,12 +20,11 @@ SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
                 <div class="timeline-month-group">
                     <!-- Month Split / Sub-header -->
                     <div class="timeline-month-header">
-                        <span class="timeline-month">{{ (index .Pages 0).Date.Format "Jan" }}</span>
+                        <time class="timeline-month" datetime='{{ (index .Pages 0).Date.Format "2006-01" }}'>
+                            {{- (index .Pages 0).Date.Format "Jan" -}}
+                        </time>
                         <span class="timeline-month-node" aria-hidden="true"></span>
-                        <div class="timeline-month-divider" aria-hidden="true">
-                            <span class="timeline-month-label">{{ (index .Pages 0).Date.Format "January" }}</span>
-                            <span class="timeline-month-line"></span>
-                        </div>
+                        <span class="timeline-month-line" aria-hidden="true"></span>
                     </div>
 
                     <!-- Posts in this Month -->
@@ -86,7 +85,7 @@ SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
                 {{- if eq . $paginator }}
                     [ <span class="pagination-current">{{ .PageNumber }}</span> ]
                 {{- else }}
-                    [ <a href="{{ .URL }}">{{ .PageNumber }}</a> ]
+                    [ <a href="{{ .URL }}" class="pagination-page">{{ .PageNumber }}</a> ]
                 {{- end }}
             {{- else }}
                 {{- if not ($.Scratch.Get "dotsRendered") }}

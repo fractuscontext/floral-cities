@@ -1,0 +1,39 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+SPDX-License-Identifier: MIT
+**/
+
+/* ==========================================================================
+   Footer Styles
+   ========================================================================== */
+footer {
+    margin-top: var(--spacing-2xl);
+    font-family: var(--font-secondary);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.footer-separator {
+    text-align: center;
+    margin: var(--spacing-block) 0;
+}
+
+.footer-meta {
+    font-family: var(--font-typewriter);
+    font-size: 0.85rem; /* Courier New has a small x-height; 0.9rem balances it nicely with 0.85rem Arial */
+}
+
+.footer-badges {
+    display: flex;
+    gap: var(--spacing-xs);
+    justify-content: center;
+    margin: var(--spacing-block) 0;
+    flex-wrap: wrap;
+}
+
+.footer-badge-img {
+    border: 0;
+    max-height: 31px; /* Standard 88x31 retro button badge */
+    width: auto;
+    display: inline-block;
+}

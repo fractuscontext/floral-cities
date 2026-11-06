@@ -1,0 +1,36 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+SPDX-License-Identifier: MIT
+**/
+
+/* ==========================================================================
+   5. Media, Code Blocks, Tables & Extras
+   ========================================================================== */
+/* Images, SVGs & Figures */
+img,
+video,
+svg {
+    max-width: 100%;
+    height: auto;
+}
+
+.img-with-caption {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin: var(--spacing-block) auto;
+}
+
+.img-with-caption img,
+.inline-svg-wrapper svg {
+    display: block;
+    margin: 0 auto;
+}
+
+.img-caption {
+    display: block;
+    margin-top: var(--spacing-sm);
+    color: var(--color-caption);
+    font-size: 0.9rem;
+    font-style: italic;
+}

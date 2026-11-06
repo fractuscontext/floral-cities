@@ -1,0 +1,14 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+SPDX-License-Identifier: MIT
+**/
+
+/* Mermaid Diagrams
+   Mermaid's default theme assumes a light page, so the block stays white in both modes. */
+.mermaid-wrapper {
+    overflow-y: hidden;
+    background-color: #fff;
+    color: #000;
+}
+
+/* Diagrams use Mermaid's own sizing (fit the post width); "open in new tab" shows full size */

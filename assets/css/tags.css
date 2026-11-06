@@ -1,0 +1,39 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+SPDX-License-Identifier: MIT
+**/
+
+/* Tags */
+.tag-list {
+    margin-top: var(--spacing-block);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-sm);
+}
+
+.tag-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tag-list ul li::before {
+    content: "[ ";
+    color: var(--color-tag-bracket);
+}
+
+.tag-list ul li::after {
+    content: " ]";
+    color: var(--color-tag-bracket);
+}
+
+.tag-list ul li.active a,
+.tag-list ul li.active {
+    color: var(--color-tag-active);
+    pointer-events: none;
+    text-decoration: none;
+}

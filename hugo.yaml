@@ -28,7 +28,7 @@ params:
       - "This work is marked CC0 1.0 Universal"
       - ""
       - "To use this theme, visit:"
-      - "https://github.com/fractuscontext/floral-cities.git"
+      - '<a href="https://github.com/fractuscontext/floral-cities">github.com/fractuscontext/floral-cities</a>'
     badges:
       - image: "https://jigsaw.w3.org/css-validator/images/vcss"
         alt: "Valid CSS!"
@@ -42,3 +42,7 @@ params:
   header_image:
     path: images/spinning_globe.gif
     alt: "Spinning Earth"
+
+  # Render ```mermaid code blocks as diagrams (loads Mermaid from jsDelivr on pages that use it)
+  mermaid:
+    enable: true

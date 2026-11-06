@@ -10,14 +10,12 @@
     {{- else }}
         {{- /* Only wrap in a div if it is a block equation */ -}}
         {{- if $isBlock -}}
-            <div class="code-wrapper">
-                <div class="code-header">
-                    <span class="code-lang">latex (rendered)</span>
-                </div>
-                <div class="code-content math-scroll-wrapper">
-                    {{- .Value -}}
-                </div>
-            </div>
+            {{- partial "code-block.html" (dict
+                "lang" "latex (rendered)"
+                "actions" (slice "copy")
+                "class" "math-scroll-wrapper"
+                "body" .Value
+            ) -}}
         {{- else -}}
             {{- /* Leave inline math alone so it flows with the text */ -}}
             {{- .Value -}}

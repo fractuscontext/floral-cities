@@ -1,0 +1,34 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+SPDX-License-Identifier: MIT
+**/
+
+/* 404 Error Page */
+.error-page-wrapper {
+    margin-top: 50px;
+}
+
+.error-box {
+    background-color: var(--color-code-header-bg);
+    border: 2px solid var(--color-accent);
+    max-width: var(--layout-card-max-width);
+    text-align: center;
+    padding: var(--spacing-block);
+    border-radius: var(--radius-md);
+}
+
+.error-box h1 {
+    color: var(--color-accent);
+    font-family: var(--font-serif);
+    margin-top: 0;
+}
+
+.error-box img {
+    border: none;
+    margin-bottom: var(--spacing-xs);
+    border-radius: var(--radius-sm);
+}
+
+.error-box .error-msg {
+    text-align: center;
+}

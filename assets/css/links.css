@@ -1,0 +1,22 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+SPDX-License-Identifier: MIT
+**/
+
+/* Links */
+a {
+    color: var(--color-accent);
+    text-decoration: underline dotted 2px;
+    text-underline-offset: 4px;
+    text-decoration-skip-ink: none; /* Prevents Safari from chewing up dots */
+}
+
+a:visited {
+    color: var(--color-accent);
+}
+
+a:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline solid 2px; /* Restate full declaration to force WebKit repaint */
+    cursor: pointer;
+}

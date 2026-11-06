@@ -1,0 +1,66 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+SPDX-License-Identifier: MIT
+**/
+
+/* ==========================================================================
+   Language-aware CJK fonts
+   Chinese and Japanese share thousands of characters but draw some differently
+   (骨, 角, 直...), so the CJK font order depends on the lang attribute.
+   Works for a whole site (baseof.html sets <html lang> from the site locale)
+   or a single block in Markdown: a paragraph followed by {lang="ja"}.
+   ========================================================================== */
+
+/* Custom properties resolve where they're declared, so the font stacks must be
+   re-declared on the element whose --font-cjk changed. Children inherit the result. */
+[lang]:not(code, pre, kbd, samp) {
+    --font-primary: "Comic Sans MS", "Chalkboard SE", "Comic Sans", var(--font-cjk), cursive;
+    --font-secondary: Arial, Helvetica, var(--font-cjk), sans-serif;
+    --font-mono: "MenloLGS NF", "MesloLGS NF", Menlo, Consolas, Monaco, "Courier New", var(--font-mono-cjk), var(--font-cjk), monospace;
+    --font-typewriter: "Courier New", Courier, var(--font-mono-cjk), var(--font-cjk), monospace;
+    font-family: var(--font-primary);
+}
+
+/* Simplified Chinese (also the default order in variables.css) */
+[lang|="zh"] {
+    --font-cjk:
+        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC",
+        "Hiragino Sans", "Yu Gothic", "Noto Sans CJK JP",
+        "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans CJK KR";
+    --font-mono-cjk: "Sarasa Mono SC", "Noto Sans Mono CJK SC";
+}
+
+/* Traditional Chinese */
+:is([lang="zh-Hant"], [lang^="zh-Hant-"], [lang="zh-TW"]) {
+    --font-cjk:
+        "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", "Source Han Sans TC",
+        "Hiragino Sans", "Yu Gothic", "Noto Sans CJK JP",
+        "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans CJK KR";
+    --font-mono-cjk: "Sarasa Mono TC", "Noto Sans Mono CJK TC";
+}
+
+[lang="zh-HK"] {
+    --font-cjk:
+        "PingFang HK", "Microsoft JhengHei", "Noto Sans CJK HK", "Source Han Sans HC",
+        "Hiragino Sans", "Yu Gothic", "Noto Sans CJK JP",
+        "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans CJK KR";
+    --font-mono-cjk: "Sarasa Mono HC", "Noto Sans Mono CJK HK";
+}
+
+/* Japanese: rounded Hiragino Maru matches Comic Sans best */
+[lang|="ja"] {
+    --font-cjk:
+        "Hiragino Maru Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", "Noto Sans CJK JP", "Source Han Sans JP",
+        "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC",
+        "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans CJK KR";
+    --font-mono-cjk: "Sarasa Mono J", "Noto Sans Mono CJK JP";
+}
+
+/* Korean */
+[lang|="ko"] {
+    --font-cjk:
+        "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans CJK KR", "Source Han Sans K",
+        "Hiragino Sans", "Yu Gothic", "Noto Sans CJK JP",
+        "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC";
+    --font-mono-cjk: "Sarasa Mono K", "Noto Sans Mono CJK KR";
+}

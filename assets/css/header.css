@@ -1,0 +1,27 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+SPDX-License-Identifier: MIT
+**/
+
+/* Site header */
+
+.compact-header h1 {
+    margin: 0 0 var(--spacing-sm) 0;
+    padding: 0;
+    font-family: var(--font-primary);
+    color: var(--color-accent);
+}
+
+.compact-header nav ul {
+    list-style: none;
+    font-family: var(--font-primary);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-md);
+}
+
+.compact-header nav ul li a {
+    font-size: 1.05rem;
+}

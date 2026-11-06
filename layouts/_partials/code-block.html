@@ -1,0 +1,52 @@
+{{- /*
+    SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+    SPDX-License-Identifier: MIT
+
+    Shared frame for code, math and diagram blocks.
+
+    Params (dict):
+      body     HTML for the block content (required)
+      lang     label on the right of the header, before the actions
+      title    optional file name, on the left
+      actions  slice of action names, e.g. (slice "copy"); order comes from $order below. Each one needs:
+                 - a handler in assets/js/main.js (`actions` map)
+                 - i18n keys code_<name> (label) and optionally code_<name>_done (feedback)
+      class    extra class(es) on .code-content
+
+    No tabindex on the scroll container: modern browsers (Chrome 130+, Edge, Firefox)
+    make overflowing areas keyboard-focusable on their own, and tabindex on a non-widget
+    element fails accessibility checkers ("tabbable element ... not a widget role").
+*/ -}}
+<div class="code-wrapper">
+    {{- /* Button order, left to right, for every block. Unlisted actions go first;
+           copy is last so it always sits in the right-hand corner. */ -}}
+    {{- $order := slice "open" "copy" }}
+    {{- /* Actions that open something new get the shared external-link arrow (main.css) */ -}}
+    {{- $external := slice "open" }}
+    {{- $actions := slice }}
+    {{- range .actions }}
+        {{- if not (in $order .) }}{{ $actions = $actions | append . }}{{ end }}
+    {{- end }}
+    {{- range $order }}
+        {{- if in $.actions . }}{{ $actions = $actions | append . }}{{ end }}
+    {{- end }}
+    <div class="code-header">
+        {{- with .title }}
+            <span class="code-file">{{ . }}</span>
+        {{- end }}
+        <span class="code-lang">{{ .lang }}</span>
+        {{- range $actions }}
+            <button type="button"
+                    class="code-action"
+                    data-action="{{ . }}"
+                    data-done="{{ T (printf "code_%s_done" .) }}"
+                    hidden>{{ T (printf "code_%s" .) }}
+                {{- if in $external . }}<span class="external-arrow" aria-hidden="true"></span>{{ end -}}
+            </button>
+        {{- end }}
+    </div>
+    <div class="code-content{{ with .class }} {{ . }}{{ end }}">
+        {{- /* Chroma adds tabindex="0" to <pre>; strip it (see note above) */ -}}
+        {{- replace .body `<pre tabindex="0"` `<pre` | safeHTML -}}
+    </div>
+</div>

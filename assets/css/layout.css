@@ -1,0 +1,55 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+SPDX-License-Identifier: MIT
+**/
+
+/* ==========================================================================
+   3. Global Layout & Typography
+   ========================================================================== */
+body {
+    background-color: var(--color-bg);
+    background-image: linear-gradient(var(--bg-overlay), var(--bg-overlay)),
+    var(--bg-pattern, none);
+    background-size: min(87px, 10vw) auto;
+    background-repeat: repeat-y;
+    background-position: left top;
+    font-family: var(--font-primary);
+    color: var(--color-text);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    letter-spacing: 0.01em;
+    word-spacing: 0.025em;
+    margin-bottom: var(--spacing-block);
+}
+
+.content-container,
+.compact-header {
+    margin-left: var(--layout-margin-left);
+    padding: var(--layout-padding);
+    max-width: var(--layout-max-width);
+}
+
+.compact-header {
+    text-align: right;
+    position: relative;
+    isolation: isolate; /* Keeps the glyph layer behind the header text only */
+}
+
+.centered-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+
+/* Crossfade between pages instead of a hard white flash */
+@view-transition {
+    navigation: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    @view-transition {
+        navigation: none;
+    }
+}

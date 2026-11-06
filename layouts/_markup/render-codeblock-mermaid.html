@@ -1,0 +1,17 @@
+{{- /*
+    SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+    SPDX-License-Identifier: MIT
+    */ -}}
+{{- if site.Params.mermaid.enable -}}
+    {{- partial "code-block.html" (dict
+        "lang" "mermaid (rendered)"
+        "actions" (slice "open")
+        "class" "mermaid-wrapper"
+        "body" (printf `<pre class="mermaid">%s</pre>` (.Inner | htmlEscape) | safeHTML)
+    ) -}}
+    {{- /* Sets a flag so Hugo knows this specific page has a diagram on it */ -}}
+    {{- .Page.Store.Set "hasMermaid" true -}}
+{{- else -}}
+    {{- /* Mermaid disabled: render as a regular highlighted code block */ -}}
+    {{- template "_markup/render-codeblock.html" . -}}
+{{- end -}}

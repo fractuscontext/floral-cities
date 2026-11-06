@@ -15,6 +15,9 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+    parser:
+      attribute:
+        block: true # allows {lang="ja"} after a paragraph, for language-aware CJK fonts
     extensions:
       passthrough:
         enable: true

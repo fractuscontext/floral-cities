@@ -1,0 +1,52 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+SPDX-License-Identifier: MIT
+**/
+
+/* Tables */
+table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: var(--spacing-block) 0;
+    padding-bottom: 4px;
+    /* Prevents scrollbars from touching the bottom border */
+    -webkit-overflow-scrolling: touch;
+}
+
+th,
+td {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    /* 4px 8px */
+    text-align: left;
+    vertical-align: middle;
+    word-break: normal;
+    overflow-wrap: normal;
+}
+
+/* Header styling with distinct separation */
+th {
+    color: var(--color-heading-dark);
+    white-space: normal;
+    border-bottom: 2px dotted var(--color-border-light);
+}
+
+/* Row dividers */
+td {
+    border-bottom: 1px dotted var(--color-border-light);
+}
+
+/* Optional: Clean bottom edge */
+tr:last-child td {
+    border-bottom: 2px dotted var(--color-border-light);
+}
+
+/* Keep formulas, KaTeX symbols, and code snippets intact */
+td .katex,
+th .katex,
+td code,
+th code {
+    white-space: nowrap;
+}

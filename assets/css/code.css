@@ -1,0 +1,116 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+SPDX-License-Identifier: MIT
+**/
+
+/* Monospace Ligatures & Elements */
+:is(pre, code, kbd, samp) {
+    letter-spacing: normal;
+    word-spacing: normal;
+}
+
+/* Code Blocks & Math Wrappers */
+.code-wrapper {
+    margin: var(--spacing-block) 0;
+    border: 2px dotted var(--color-border-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.code-header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-family: var(--font-mono);
+    font-size: calc(var(--font-size-base) * 0.75);
+    border-bottom: 2px dotted var(--color-border-light);
+    background-color: var(--color-code-header-bg);
+}
+
+/* File name on the left; language + actions pushed right together */
+.code-header .code-file {
+    overflow-wrap: anywhere;
+}
+
+.code-header .code-lang {
+    margin-left: auto;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.code-content {
+    overflow-x: auto;
+}
+
+/* Browsers make overflowing blocks focusable on their own; match the site's focus ring */
+.code-content:focus-visible {
+    outline: 2px dotted var(--color-accent);
+    outline-offset: -2px; /* inside, so .code-wrapper's overflow: hidden doesn't clip it */
+}
+
+.code-content pre,
+.code-content code {
+    font-family: var(--font-mono);
+    font-size: calc(var(--font-size-base) * 0.9);
+    line-height: 1.45;
+    color: inherit;
+    background-color: inherit;
+}
+
+.code-content pre {
+    margin: 0 !important;
+    border-radius: 0 0 var(--radius-md) var(--radius-md) !important;
+    white-space: pre;
+}
+
+/* Header action buttons (code-block.html; shown by assets/js/main.js when usable).
+   Same small uppercase mono as the language label, in [ brackets ] like the tag list. */
+.code-action {
+    flex-shrink: 0;
+    /* Bigger tap area (~24px tall) without changing the header's height */
+    min-height: 0;
+    padding: 6px 4px;
+    margin: -6px -4px;
+    border: 0;
+    background: none;
+    color: var(--color-accent);
+    font: inherit;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.code-action::before {
+    content: "[ ";
+    color: var(--color-tag-bracket);
+}
+
+.code-action::after {
+    content: " ]";
+    color: var(--color-tag-bracket);
+}
+
+.code-action:hover,
+.code-action:focus-visible {
+    color: var(--color-accent-hover);
+    text-decoration: underline dotted 2px;
+    text-underline-offset: 3px;
+}
+
+:not(pre)>code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    padding: 0.15em 0.35em;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-code-header-bg);
+    border: 1px dotted var(--color-border-light);
+    overflow-wrap: anywhere;
+}
+
+/* Inner padding for Code blocks */
+.code-content pre {
+    padding: 5px !important;
+    box-sizing: border-box;
+}

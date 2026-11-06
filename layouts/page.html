@@ -32,4 +32,13 @@
     </section>
 
     {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) -}}
+
+    <!-- Back link to the parent section (e.g. posts); skipped for top-level pages like About -->
+    {{- with .Parent }}
+        {{- if not .IsHome }}
+            <p class="post-back">
+                <a href="{{ .RelPermalink }}">{{ i18n "back_to_section" (dict "Section" (.LinkTitle | lower)) }}</a>
+            </p>
+        {{- end }}
+    {{- end }}
 {{ end }}

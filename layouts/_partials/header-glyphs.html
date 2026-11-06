@@ -1,0 +1,12 @@
+{{- /*
+    SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+    SPDX-License-Identifier: MIT
+*/ -}}
+{{- /* Decorative script drifting behind the header. Swap the glyph string (and --font-glyphs in main.css) to change scripts. */ -}}
+{{- $glyphs := split "ᛃᚨ ᛈᚱᛁᛋᛟᛚ ᛞᚨᛏ ᛖᛏᚢ ᛈᛖᛋᚾᛃᚢ" "" }}
+{{- $rows := slice 9 52 22 64 4 40 28 }}
+<div class="header-glyphs" aria-hidden="true">
+    {{- range $i, $g := $glyphs }}
+        <span style="--i: {{ $i }}; --total: {{ len $glyphs }}; --y: {{ index $rows (mod $i (len $rows)) }}%; --s: {{ mod (mul $i 7) 4 }}">{{ $g }}</span>
+    {{- end }}
+</div>

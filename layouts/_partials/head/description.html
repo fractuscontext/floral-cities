@@ -1,0 +1,20 @@
+{{- /*
+    SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+    SPDX-License-Identifier: MIT
+
+    Returns a plain-text page description for meta tags.
+    Order: front matter `description` → prose from the summary → site.Params.description.
+    Only <p> text is taken from the summary, so code blocks, mermaid diagrams,
+    display math and their headers never leak into link previews.
+    */ -}}
+{{- $desc := "" }}
+{{- with .Description }}
+    {{- $desc = . }}
+{{- else }}
+    {{- $desc = delimit (findRE `(?s)<p(?:\s[^>]*)?>.*?</p>` .Summary) " " }}
+    {{- /* KaTeX emits MathML + HTML; drop the MathML copy so inline formulas aren't doubled */ -}}
+    {{- $desc = replaceRE `(?s)<span class="katex-mathml">.*?</span>` "" $desc }}
+{{- end }}
+{{- $desc = or $desc site.Params.description "" }}
+{{- $desc = $desc | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace | truncate 160 }}
+{{- return $desc }}

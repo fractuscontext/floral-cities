@@ -1,0 +1,24 @@
+/**
+SPDX-FileCopyrightText: 2026 Claire Tam <claire2026t@posteo.net>
+SPDX-License-Identifier: MIT
+**/
+
+/* Inner padding for Math blocks */
+.math-scroll-wrapper {
+    padding: 5px !important;
+    box-sizing: border-box;
+}
+
+/* Math Overflow Container */
+.math-scroll-wrapper {
+    display: block !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    font-size: var(--font-size-base) !important;
+}
+
+.katex-display {
+    margin: 0 !important;
+    overflow: visible !important;
+}
